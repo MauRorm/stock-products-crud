@@ -1,4 +1,5 @@
-const BASE_URL_SERVER = "http://localhost:8000";
+const BASE_URL_SERVER =
+window.location.origin.indexOf('localhost') > -1 ? window.location.origin.replace('3000', '8000') : window.location.origin+window.location.port;
 const CONSTANTS = {
   URL: {
     GET_LIST: "/api/get/elements",
