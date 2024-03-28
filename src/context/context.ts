@@ -1,32 +1,7 @@
 import { createContext } from 'react';
+import {ListItem, Theme, ThemeContextType, } from '../interfaces/generalInterfaces';
 
-interface ListItem {
-  urlImage: string;
-  price: string;
-  description: string;
-  type: string;
-  id: string;
-  isLastElement: boolean;
-}
 
-// Tus interfaces
-interface Theme {
-  foreground: string;
-  background: string;
-}
-
-interface ThemeContextType {
-  theme: Theme;
-  handleChangeTheme: () => void;
-
-  headerFilter: string | null;
-  handleBlurHaderFilter: (value: string | null) => void;
-
-  itemList: ListItem[];
-  setItemList: (list: ListItem[]) => void;
-}
-
-// Definición de temas simplificada
 export const themeConfig = {
   light: {
     foreground: '#000000',
@@ -38,7 +13,6 @@ export const themeConfig = {
   },
 };
 
-// Objeto inicial para ThemeContext
 const initialContext: ThemeContextType = {
 
   theme: themeConfig.light, // Tema inicial

@@ -1,16 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent, useState, useEffect, useRef } from 'react';
 
-interface CustomInputProps {
-  defaultValue: string;
-  onBlur: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-  onKeyPress: (event: KeyboardEvent<HTMLInputElement>, value: string) => void; // Corregido a KeyboardEvent.
-  className: string;
-  disabled: boolean;
-  readOnly: boolean;
-  style: React.CSSProperties; // Correcto para los estilos.
-  placeholder: string;
-  type: string;
-}
+import {CustomInputProps} from '../interfaces/generalInterfaces';
 
 // La función usePrevious es correcta y bien definida fuera del componente.
 function usePrevious<T>(value: T): T | undefined {

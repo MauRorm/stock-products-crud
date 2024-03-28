@@ -10,6 +10,7 @@ import "../App.css";
 import useFetch from "../customHooks/useFetch";
 import CustomCard from "../components/CustomCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomModal from "../components/CustomLoader";
 import {
   faArrowAltCircleLeft,
   faPencil,
@@ -17,40 +18,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
   useNavigate,
   useParams,
 } from "react-router-dom";
 
 import {
   ListItem,
-  InterfaceItemList,
-  InterfaceSize,
-  HOCInterfaceList,
 } from "../interfaces/generalInterfaces";
 
 import CustomInput from "../components/CustomInput";
 
 import ThemeContext from "../context/context";
 
+import {DescriptionInterface} from '../interfaces/generalInterfaces';
+
 import GENERAL_CONSTANTS from "../constants/generalConstants";
 
 import productImage from '../images/image-product.jpg';
 
-const BASE_URL_SERVER = GENERAL_CONSTANTS.BASE_URL_SERVER;
 const CONSTANTS = GENERAL_CONSTANTS.CONSTANTS;
 
 
-interface DescriptionInterface {
-  isDetail: boolean;
-}
 
 const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
   let { id } = useParams();
 
-  console.log("dedoieijdeoj ", isDetail);
 
   const { itemList, setItemList } = useContext(ThemeContext);
 
@@ -70,7 +62,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
     const onSetDetail = async () => {
       const elementSelected = getInitialData();
       setDetail(elementSelected);
-      setPriceDetail(elementSelected !== null ? elementSelected.price : null);
+      setPriceDetail(elementSelected !== null ? elementSelected.price.replace("$", "").replace(/,/g, '') : null);
       setDescriptionDetail(
         elementSelected !== null ? elementSelected.description : null
       );
@@ -80,6 +72,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
 
   if (detail !== null) {
     const { urlImage, description, price } = detail;
+    
     return (
       <CustomCard className="item-list-container">
         <FontAwesomeIcon
@@ -107,23 +100,48 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
               cursor: "pointer",
             }}
             onClick={() => {
-              const newArray = itemList.map((element) => {
-                if (element.id === id) {
-                  element.description =
-                    descriptionDetail === null ? "" : descriptionDetail;
-                  element.price =
-                    priceDetail === null
-                      ? "$ "
-                      : "$ " +
-                        priceDetail.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                  return element;
-                } else {
-                  return element;
+
+              const validateString = (value: string | null) => {
+                let isError = false;
+                if (value === null || !value.trim()) {
+                  isError = true;
                 }
-              });
-              setItemList(newArray);
-              setDetail(newArray.filter((element) => element.id === id)[0]);
-              setIsToggleEdit(!isToggleEdit);
+                return isError;
+              };
+              let isError = false;
+              if (validateString(priceDetail)) {
+                isError = true;
+              }
+              if (validateString(descriptionDetail)) {
+                isError = true;
+              }
+              if (isNaN(parseFloat(priceDetail === null ? '' : priceDetail))) {
+                alert("El campo precio debe ser númerico");
+                isError = true;
+              }
+              if (isError) {
+                alert("Los campos precio y descripción son requeridos");
+              } else {
+                const newArray = itemList.map((element) => {
+                  if (element.id === id) {
+                    element.description =
+                      descriptionDetail === null ? "" : descriptionDetail;
+                    element.price =
+                      priceDetail === null
+                        ? "$ "
+                        : "$ " +
+                          priceDetail.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    return element;
+                  } else {
+                    return element;
+                  }
+                });
+                setItemList(newArray);
+                setDetail(newArray.filter((element) => element.id === id)[0]);
+                setIsToggleEdit(!isToggleEdit);
+              }
+
+
             }}
             icon={faSave}
           />
@@ -148,14 +166,12 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
           <div>
             <Suspense
               fallback={
-                <div className="loader-container">
-                  <span className="loader" />
-                </div>
+                <CustomModal />
               }
             >
               <img
                 alt="image"
-                src={urlImage}
+                src={productImage}
                 style={{ width: "22em", height: "auto" }}
               />
             </Suspense>
@@ -184,12 +200,13 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
               )}
             </h2>
             <p style={{ marginTop: "0", fontSize: "24px" }}>
+ 
               {isToggleEdit ? (
                 <CustomInput
-                  defaultValue={price.replace("$", "")}
+                  defaultValue={price.replace("$", "").replace(/,/g, '')}
                   disabled={false}
                   readOnly={false}
-                  type="number"
+                  type="text"
                   placeholder={"Precio"}
                   className={"edit-input"}
                   style={{}}
@@ -250,6 +267,10 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
             if (validateString(descriptionDetail)) {
               isError = true;
             }
+            if (isNaN(parseFloat(priceDetail === null ? '' : priceDetail))) {
+              alert("El campo precio debe ser númerico");
+              isError = true;
+            }
             if (isError) {
               alert("Los campos precio y descripción son requeridos");
             } else {
@@ -277,9 +298,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
           <div>
             <Suspense
               fallback={
-                <div className="loader-container">
-                  <span className="loader" />
-                </div>
+<CustomModal />
               }
             >
               <img
@@ -314,7 +333,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
                 disabled={false}
                 readOnly={false}
                 placeholder={"Precio"}
-                type="number"
+                type="text"
                 className={"edit-input"}
                 style={{}}
                 onBlur={(e: ChangeEvent<HTMLInputElement>, value: string) => {
@@ -333,9 +352,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
   } else {
     return (
       <CustomCard className="item-list-container">
-        <div className="loader-container">
-          <span className="loader" />
-        </div>
+<CustomModal />
       </CustomCard>
     );
   }

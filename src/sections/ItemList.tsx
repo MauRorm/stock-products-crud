@@ -13,7 +13,7 @@ import {
   InterfaceSize,
   HOCInterfaceList,
 } from "../interfaces/generalInterfaces";
-
+import CustomModal from "../components/CustomLoader";
 import ThemeContext from "../context/context";
 import productImage from '../images/image-product.jpg';
 import GENERAL_CONSTANTS from "../constants/generalConstants";
@@ -48,9 +48,7 @@ const Item: React.FC<ListItem> = ({
       <div>
         <Suspense
           fallback={
-            <div className="loader-container">
-              <span className="loader" />
-            </div>
+<CustomModal />
           }
         >
           <img
@@ -91,7 +89,7 @@ const Item: React.FC<ListItem> = ({
   );
 };
 
-const withListRendering = (ItemComponent: any) => {
+const HOCListRendering = (ItemComponent: any) => {
   return function ({ isOptimized, list, headerFilter }: HOCInterfaceList) {
     if (
       headerFilter !== null &&
@@ -99,9 +97,7 @@ const withListRendering = (ItemComponent: any) => {
       headerFilter.length === 0
     ) {
       return (
-        <div className="loader-container">
-          <span className="loader" />
-        </div>
+<CustomModal />
       );
     } else if (
       headerFilter !== null &&
@@ -149,7 +145,7 @@ const withListRendering = (ItemComponent: any) => {
   };
 };
 
-const ListWithRendering = withListRendering(Item);
+const ListWithRendering = HOCListRendering(Item);
 
 const ItemList: React.FC<InterfaceItemList> = ({ isOptimized }) => {
   // const [list, setList] = useState<ListItem[]>([]);

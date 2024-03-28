@@ -4,7 +4,7 @@ import "./App.css";
 import Header from "./sections/Header";
 import Home from './sections/Home';
 import ItemList from "./sections/ItemList";
-import { ListItem } from "./interfaces/generalInterfaces";
+import { ListItem, Theme, } from "./interfaces/generalInterfaces";
 import {
   BrowserRouter as Router,
   Routes,
@@ -21,14 +21,16 @@ const CONSTANTS = GENERAL_CONSTANTS.CONSTANTS;
 
 /*
 Pendientes:
-  Responder psicometrico 1/2
-  ---------------------------------------------------------------------------
+
+  Añadir el debouncing al botón de búsquedas y dar una pasada general
+
+  Crear git del proyecto del lunes
+  Preparar deploy del proyecto del lunes
+
   Realizar 2 ejercicios, busqueda y otro
-  Responder psicometrico 2/2
-  Añadir el debouncing al botón de búsquedas
   Pasar useNavigate por context pa no repetir en todos lados *
-  Deployar Esto
-  Crear su git
+
+  Responder psicometrico (para el viernes mejor en Cuerna)
 */
 
 const NoMatch = () => {
@@ -40,10 +42,7 @@ const NoMatch = () => {
 };
 
 const App = () => {
-  interface Theme {
-    foreground: string;
-    background: string;
-  }
+
 
   const [theme, setTheme] = useState<Theme>(themeConfig.light); // Estado inicial del tema
 
