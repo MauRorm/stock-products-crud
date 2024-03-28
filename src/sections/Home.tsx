@@ -20,7 +20,7 @@ const Home = () => {
           <p className="clear-margin-top">¡Encuentra lo que estás buscando!</p>
         </div>
   
-        <div>
+        <div className="buttons-container">
           <button
             onClick={() => {
               navigate(`${CONSTANTS.ROUTES.ITEM_LIST_ROUTE}optimized`);
