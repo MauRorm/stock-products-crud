@@ -1,0 +1,262 @@
+.App-header {
+  height: auto;
+  background-color: #ffe600;
+  /* position: fixed; */
+  /* z-index: 1; */
+  width: 100%;
+}
+
+.App-logo {
+  height: 100%;
+  cursor: pointer;
+}
+
+.image-and-input-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-button {
+  height: auto;
+  width: 27px;
+  border-left: .3px solid gray;
+  cursor: pointer;
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 30em;
+  height: 27px;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+@media (max-width: 700px) {
+  .search-input {
+    width: 20em;
+  }
+}
+
+/*
+LOGIN
+*/
+.login-title {
+  text-align: center;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100%; /* Esto hace que el contenedor tenga el 100% de la altura de la ventana del navegador */
+}
+
+.centrado {
+  width: 30%; /* O cualquier ancho específico */
+  padding: 20px; /* O cualquier padding que desees */
+  border: 1px solid #000; /* Solo para visualización */
+  /* Añade más estilos según necesites */
+  display: flex;
+  flex-direction: column; 
+}
+
+.input-login {
+  margin-bottom: 1.5em;
+  width: 80%;
+  display: block; /* Hace que el botón sea un bloque, permitiendo que los márgenes automáticos funcionen */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.input-login p {
+  margin-bottom: 1.5em;
+  width: 80%;
+  display: block; /* Hace que el botón sea un bloque, permitiendo que los márgenes automáticos funcionen */
+  margin-left: auto;
+  margin-right: auto;
+  label {
+    margin-bottom: 0px;
+  }
+}
+
+.login-button {
+  width: 10em;
+  /*Así evitamos crear un div contenedor*/
+  display: block; /* Hace que el botón sea un bloque, permitiendo que los márgenes automáticos funcionen */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-screen {
+  display: flex;
+  justify-content: center;
+   /* align-items: center; */
+  width: 100vw;
+  height: 100vh;
+
+   /* 100% del ancho de la ventana del navegador */
+  /* 100% del alto de la ventana del navegador */
+  /*
+ /*
+  position: absolute;
+  top: 0;
+  left: 0;
+  */
+}
+
+.item-list-container {
+  margin-top: 1em;
+  background-color: white;
+  width: 80%;
+  height: auto;
+  max-height: 70%;
+  border-radius: 4px 4px 0 0;
+  overflow-y: auto;
+}
+
+.item-list-container-two {
+  margin-top: 1em;
+  background-color: white;
+  width: 80%;
+  height: auto;
+  max-height: 70%;
+  border-radius: 4px 4px 0 0;
+}
+
+
+
+/* ------------------------------------------------------------------- */
+
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: yellow;
+  padding: 1em;
+}
+.search-box {
+  width: 100%;
+  max-width: 600px;
+}
+.main-content {
+  background-color: #f5f5f5;
+  padding: 1em;
+}
+.list {
+  background-color: white;
+  padding: 1em;
+  height: 100%; /* O un valor específico dependiendo del diseño */
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+} 
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: #0277bd;
+}
+
+
+.loader-two {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+} 
+.loader-two::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-bottom-color: #e34c3c;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.my-button {
+  padding: 10px 20px;
+  background-color: #0277bd;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.my-button:hover {
+  background-color: #4569a0;
+}
+.my-button:active {
+  background-color: #0277bd;
+}
+
+.title-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clear-margin-top {
+  margin-top: 0;
+}
+
+
+.edit-input {
+  width: 20em;
+  height: 27px;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 1px solid;
+}
