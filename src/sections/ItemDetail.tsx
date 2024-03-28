@@ -17,32 +17,24 @@ import {
   faSave,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import {
-  ListItem,
-} from "../interfaces/generalInterfaces";
+import { ListItem } from "../interfaces/generalInterfaces";
 
 import CustomInput from "../components/CustomInput";
 
 import ThemeContext from "../context/context";
 
-import {DescriptionInterface} from '../interfaces/generalInterfaces';
+import { DescriptionInterface } from "../interfaces/generalInterfaces";
 
 import GENERAL_CONSTANTS from "../constants/generalConstants";
 
-import productImage from '../images/image-product.jpg';
+import productImage from "../images/image-product.jpg";
 
 const CONSTANTS = GENERAL_CONSTANTS.CONSTANTS;
 
-
-
 const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
   let { id } = useParams();
-
 
   const { itemList, setItemList } = useContext(ThemeContext);
 
@@ -62,7 +54,11 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
     const onSetDetail = async () => {
       const elementSelected = getInitialData();
       setDetail(elementSelected);
-      setPriceDetail(elementSelected !== null ? elementSelected.price.replace("$", "").replace(/,/g, '') : null);
+      setPriceDetail(
+        elementSelected !== null
+          ? elementSelected.price.replace("$", "").replace(/,/g, "")
+          : null
+      );
       setDescriptionDetail(
         elementSelected !== null ? elementSelected.description : null
       );
@@ -72,18 +68,11 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
 
   if (detail !== null) {
     const { urlImage, description, price } = detail;
-    
+
     return (
       <CustomCard className="item-list-container">
         <FontAwesomeIcon
-          style={{
-            height: "20px",
-            width: "20px",
-            color: "#a7a790",
-            fontSize: "2em",
-            margin: "2px",
-            cursor: "pointer",
-          }}
+          className="return-button"
           onClick={() => {
             navigate(`${CONSTANTS.ROUTES.ITEM_LIST_ROUTE}optimized`);
           }}
@@ -91,16 +80,8 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
         />
         {isToggleEdit ? (
           <FontAwesomeIcon
-            style={{
-              height: "20px",
-              width: "20px",
-              color: "#0277bd",
-              fontSize: "2em",
-              margin: "2px",
-              cursor: "pointer",
-            }}
+            className="save-button"
             onClick={() => {
-
               const validateString = (value: string | null) => {
                 let isError = false;
                 if (value === null || !value.trim()) {
@@ -115,7 +96,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
               if (validateString(descriptionDetail)) {
                 isError = true;
               }
-              if (isNaN(parseFloat(priceDetail === null ? '' : priceDetail))) {
+              if (isNaN(parseFloat(priceDetail === null ? "" : priceDetail))) {
                 alert("El campo precio debe ser númerico");
                 isError = true;
               }
@@ -140,21 +121,12 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
                 setDetail(newArray.filter((element) => element.id === id)[0]);
                 setIsToggleEdit(!isToggleEdit);
               }
-
-
             }}
             icon={faSave}
           />
         ) : (
           <FontAwesomeIcon
-            style={{
-              height: "20px",
-              width: "20px",
-              color: "#0277bd",
-              fontSize: "2em",
-              margin: "2px",
-              cursor: "pointer",
-            }}
+          className="save-button"
             onClick={() => {
               setIsToggleEdit(!isToggleEdit);
             }}
@@ -162,21 +134,17 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
           />
         )}
 
-        <div style={{ display: "flex", margin: "1em" }}>
+        <div className="detail-container">
           <div>
-            <Suspense
-              fallback={
-                <CustomModal />
-              }
-            >
+            <Suspense fallback={<CustomModal />}>
               <img
                 alt="image"
                 src={productImage}
-                style={{ width: "22em", height: "auto" }}
+                className="product-image-detail"
               />
             </Suspense>
           </div>
-          <div style={{ marginLeft: "1em" }}>
+          <div className="product-detail-description">
             <h2 style={{ marginTop: "0", fontSize: "20px", color: "#333" }}>
               {isToggleEdit ? (
                 <CustomInput
@@ -200,10 +168,9 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
               )}
             </h2>
             <p style={{ marginTop: "0", fontSize: "24px" }}>
- 
               {isToggleEdit ? (
                 <CustomInput
-                  defaultValue={price.replace("$", "").replace(/,/g, '')}
+                  defaultValue={price.replace("$", "").replace(/,/g, "")}
                   disabled={false}
                   readOnly={false}
                   type="text"
@@ -230,28 +197,14 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
     return (
       <CustomCard className="item-list-container">
         <FontAwesomeIcon
-          style={{
-            height: "20px",
-            width: "20px",
-            color: "#a7a790",
-            fontSize: "2em",
-            margin: "2px",
-            cursor: "pointer",
-          }}
+          className="return-button"
           onClick={() => {
             navigate(`${CONSTANTS.ROUTES.ITEM_LIST_ROUTE}optimized`);
           }}
           icon={faArrowAltCircleLeft}
         />
         <FontAwesomeIcon
-          style={{
-            height: "20px",
-            width: "20px",
-            color: "#0277bd",
-            fontSize: "2em",
-            margin: "2px",
-            cursor: "pointer",
-          }}
+          className="save-button"
           onClick={() => {
             const validateString = (value: string | null) => {
               let isError = false;
@@ -267,7 +220,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
             if (validateString(descriptionDetail)) {
               isError = true;
             }
-            if (isNaN(parseFloat(priceDetail === null ? '' : priceDetail))) {
+            if (isNaN(parseFloat(priceDetail === null ? "" : priceDetail))) {
               alert("El campo precio debe ser númerico");
               isError = true;
             }
@@ -294,21 +247,17 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
           icon={faSave}
         />
 
-        <div style={{ display: "flex", margin: "1em" }}>
+        <div  className="buttons-container">
           <div>
-            <Suspense
-              fallback={
-<CustomModal />
-              }
-            >
+            <Suspense fallback={<CustomModal />}>
               <img
                 alt="image"
                 src={productImage}
-                style={{ width: "22em", height: "auto" }}
+                className="product-image-detail"
               />
             </Suspense>
           </div>
-          <div style={{ marginLeft: "1em" }}>
+          <div className="product-detail-description">
             <h2 style={{ marginTop: "0", fontSize: "20px", color: "#333" }}>
               <CustomInput
                 defaultValue={""}
@@ -352,7 +301,7 @@ const ItemDescription: React.FC<DescriptionInterface> = ({ isDetail }) => {
   } else {
     return (
       <CustomCard className="item-list-container">
-<CustomModal />
+        <CustomModal />
       </CustomCard>
     );
   }

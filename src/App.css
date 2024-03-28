@@ -260,3 +260,87 @@ LOGIN
   border-top: 0px;
   border-bottom: 1px solid;
 }
+
+
+@media (max-width: 740px) {
+  .buttons-container {
+    display: flex;
+    flex-direction: column
+  }
+}
+
+.save-button {
+    height: 20px;
+    width: 20px;
+    color: #0277bd;
+    font-size: 2em;
+    margin: 2px;
+    cursor: pointer;
+}
+
+@media (max-width: 740px) {
+  .save-button {
+    height: 40px;
+    width: 40px;
+  }
+
+}
+
+
+.return-button {
+  height: 20px;
+  width: 20px;
+  color: #a7a790;
+  font-size: 2em;
+  margin: 2px;
+  cursor: pointer;
+}
+
+@media (max-width: 740px) {
+.return-button {
+  height: 40px;
+  width: 40px;
+}
+
+}
+
+
+.detail-container {
+  display: flex;
+    margin: 1em;
+}
+
+@media (max-width: 740px) {
+  .detail-container {
+    flex-direction: column;
+  }
+  
+  }
+
+
+  .product-image-detail {
+    height: 22em;
+  }
+  
+  @media (max-width: 740px) {
+    .product-image-detail {
+      height: 18em;
+    }
+    
+    }
+
+    .product-image-detail {
+      margin-left: 1em;
+    }
+    @media (max-width: 740px) {
+      .product-image-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      }
+
+
+  
