@@ -240,6 +240,19 @@ LOGIN
 .my-button:active {
   background-color: #0277bd;
 }
+@media (max-width: 740px) {
+
+  .my-button {
+    padding: 10px 5px;
+    background-color: #0277bd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  }
+
 
 .title-home {
   display: flex;
@@ -341,6 +354,18 @@ LOGIN
       }
       
       }
+
+      .unoptimized-list {
+        height:22em;
+          overflow-y: auto;
+      }
+      @media (max-width: 740px) {
+        .unoptimized-list {
+          height: 36em;
+        }
+        
+        }
+
 
 
   

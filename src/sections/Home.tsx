@@ -36,7 +36,7 @@ const Home = () => {
             }}
             className="my-button"
           >
-            Ir a la versión no optimizada (5,000 elementos)
+            Ir a la versión no optimizada (2,000 elementos)
           </button>
         </div>
       </div>
