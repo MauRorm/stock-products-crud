@@ -135,11 +135,11 @@ const HOCListRendering = (ItemComponent: any) => {
       );
     } else {
       return (
-        <>
+        <div className="unoptimized-list">
           {list.map((item) => (
             <ItemComponent key={item.id} {...item} />
           ))}
-        </>
+        </div>
       );
     }
   };
