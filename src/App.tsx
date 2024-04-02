@@ -22,15 +22,9 @@ const CONSTANTS = GENERAL_CONSTANTS.CONSTANTS;
 /*
 Pendientes:
 
-  Añadir el debouncing al botón de búsquedas y dar una pasada general
-
-  Crear git del proyecto del lunes
-  Preparar deploy del proyecto del lunes
-
-  Realizar 2 ejercicios, busqueda y otro
+  Añadir el debouncing al botón *
   Pasar useNavigate por context pa no repetir en todos lados *
 
-  Responder psicometrico (para el viernes mejor en Cuerna)
 */
 
 const NoMatch = () => {

@@ -17,6 +17,7 @@ import CustomModal from "../components/CustomLoader";
 import ThemeContext from "../context/context";
 import productImage from '../images/image-product.jpg';
 import GENERAL_CONSTANTS from "../constants/generalConstants";
+import { string } from "yargs";
 
 const BASE_URL_SERVER = GENERAL_CONSTANTS.BASE_URL_SERVER;
 const CONSTANTS = GENERAL_CONSTANTS.CONSTANTS;
@@ -116,6 +117,7 @@ const HOCListRendering = (ItemComponent: any) => {
         <AutoSizer>
           {({ height, width }: InterfaceSize) => (
             <FixedSizeList
+            // max-height: 100%
               height={height - 73}
               width={width}
               itemCount={list.length}
@@ -154,6 +156,10 @@ const ItemList: React.FC<InterfaceItemList> = ({ isOptimized }) => {
   const { headerFilter, setItemList, itemList } = useContext(ThemeContext);
 
   const getInitialData = async () => {
+
+
+
+
     let listData: ListItem[] = [];
     const response = await (callApi as (url: string) => Promise<any>)(
       `${BASE_URL_SERVER}${CONSTANTS.URL.GET_LIST}`
@@ -164,6 +170,30 @@ const ItemList: React.FC<InterfaceItemList> = ({ isOptimized }) => {
   };
 
   useEffect(() => {
+
+
+
+    const get = async () => {
+      interface BankInterface {        
+        age: string,
+        bankName: string,
+        description: string,
+        url: string,
+      }
+      let banks: BankInterface[] = [];
+      const responseBanks = await (callApi as (url: string) => Promise<any>)(
+        `https://dev.obtenmas.com/catom/api/challenge/banks`
+      );
+      banks = responseBanks;
+
+      return banks
+    }
+    get();
+
+
+
+
+    
     itemList.length === 0 && getInitialData();
   }, []);
 
