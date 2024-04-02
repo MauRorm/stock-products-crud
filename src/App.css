@@ -125,9 +125,11 @@ LOGIN
   margin-top: 1em;
   background-color: white;
   width: 80%;
-  height: auto;
-  max-height: 70%;
+  height: 80%;
+  max-height: 80%;
   border-radius: 4px 4px 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -233,6 +235,7 @@ LOGIN
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 15em;
 }
 .my-button:hover {
   background-color: #4569a0;
@@ -356,14 +359,10 @@ LOGIN
       }
 
       .unoptimized-list {
-        height:22em;
+        height:100%;
+        max-height: 100%;
           overflow-y: auto;
-      }
-      @media (max-width: 740px) {
-        .unoptimized-list {
-          height: 36em;
-        }
-        
+      
         }
 
 
