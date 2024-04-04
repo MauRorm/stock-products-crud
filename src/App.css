@@ -43,6 +43,14 @@
   }
 }
 
+
+@media (max-width: 395px) {
+  .search-input {
+    width: 17em;
+  }
+}
+
+
 /*
 LOGIN
 */
@@ -281,7 +289,8 @@ LOGIN
 @media (max-width: 740px) {
   .buttons-container {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    align-items: center;
   }
 }
 
