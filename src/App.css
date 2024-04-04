@@ -295,8 +295,8 @@ LOGIN
 }
 
 .save-button {
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 30px;
     color: #0277bd;
     font-size: 2em;
     margin: 2px;
@@ -313,8 +313,8 @@ LOGIN
 
 
 .return-button {
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   color: #a7a790;
   font-size: 2em;
   margin: 2px;
